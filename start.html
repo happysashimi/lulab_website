@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lulab Combined Brand Animation</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+        #animation-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(-45deg, #89ABE3FF, #FCF6F5FF);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        @keyframes gradientBG {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+        }
+        svg {
+            width: 80%;
+            max-width: 600px;
+        }
+        #lulab-text, #lulab-text-v2 {
+            transition: all 0.3s ease;
+        }
+        #lulab-text:hover, #lulab-text-v2:hover {
+            filter: drop-shadow(0 0 10px rgba(137, 171, 227, 0.8));
+        }
+        #enter-site-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            color: #ffffff;
+            background-color: #ee7752;
+            border: 2px solid #ffffff;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        #enter-site-btn:hover {
+            background-color: #e73c7e;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        .floating-element {
+            position: absolute;
+            opacity: 0.7;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+    <div id="animation-container">
+        <div class="floating-elements"></div>
+        <svg viewBox="0 0 300 100">
+            <defs>
+                <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#4A6FA5" />
+                    <stop offset="100%" stop-color="#89ABE3" />
+                </linearGradient>
+                <linearGradient id="textGradientV2" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#ee7752" />
+                    <stop offset="50%" stop-color="#e73c7e" />
+                    <stop offset="100%" stop-color="#23a6d5" />
+                </linearGradient>
+            </defs>
+            <text id="lulab-text" x="150" y="60" font-size="60" font-weight="bold" fill="url(#textGradient)" text-anchor="middle">Lulab</text>
+            <rect id="underline" x="50" y="70" width="200" height="4" fill="url(#textGradient)" />
+            <text id="lulab-text-v2" x="150" y="95" font-size="20" font-weight="bold" fill="url(#textGradientV2)" text-anchor="middle">Innovation Lab</text>
+        </svg>
+        <button id="enter-site-btn">Enter Site</button>
+    </div>
+
+    <script>
+        const container = document.getElementById('animation-container');
+        const text = document.getElementById('lulab-text');
+        const textV2 = document.getElementById('lulab-text-v2');
+        const underline = document.getElementById('underline');
+        const enterSiteBtn = document.getElementById('enter-site-btn');
+        const floatingElements = document.querySelector('.floating-elements');
+        let isExpanded = false;
+
+        const tl = gsap.timeline();
+
+        // Initial setup
+        gsap.set("#lulab-text", {opacity: 0, y: 20});
+        gsap.set("#lulab-text-v2", {opacity: 0, y: 20});
+        gsap.set("#underline", {scaleX: 0, transformOrigin: "center"});
+
+        // Animation sequence
+        tl.to("#lulab-text", {duration: 1, opacity: 1, y: 0, ease: "power2.out"})
+          .to("#underline", {duration: 0.5, scaleX: 1, ease: "power2.inOut"}, "-=0.5")
+          .to("#lulab-text-v2", {duration: 1, opacity: 1, y: 0, ease: "power2.out"}, "-=0.25")
+          .to("#enter-site-btn", {duration: 0.5, opacity: 1, y: 0, ease: "back.out(1.7)"}, "+=0.5");
+
+        // Create floating elements
+        function createFloatingElements() {
+            const colors = ['#ee7752', '#e73c7e', '#23a6d5'];
+            for (let i = 0; i < 15; i++) {
+                const element = document.createElement('div');
+                element.classList.add('floating-element');
+                element.style.width = `${Math.random() * 20 + 10}px`;
+                element.style.height = element.style.width;
+                element.style.borderRadius = '50%';
+                element.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                element.style.left = `${Math.random() * 100}%`;
+                element.style.top = `${Math.random() * 100}%`;
+                floatingElements.appendChild(element);
+
+                gsap.to(element, {
+                    x: `random(-100, 100)`,
+                    y: `random(-100, 100)`,
+                    rotation: `random(-360, 360)`,
+                    duration: `random(20, 40)`,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "none"
+                });
+            }
+        }
+
+        createFloatingElements();
+
+        // Click interaction for logo
+        container.addEventListener('click', (e) => {
+            if (e.target !== enterSiteBtn) {
+                if (!isExpanded) {
+                    gsap.to([text, textV2], {duration: 0.5, scale: 1.2, ease: "back.out(1.7)"});
+                    gsap.to(underline, {duration: 0.5, scaleX: 1.2, ease: "back.out(1.7)"});
+                } else {
+                    gsap.to([text, textV2], {duration: 0.5, scale: 1, ease: "back.out(1.7)"});
+                    gsap.to(underline, {duration: 0.5, scaleX: 1, ease: "back.out(1.7)"});
+                }
+                isExpanded = !isExpanded;
+            }
+        });
+
+        // Mouse move effect
+        container.addEventListener('mousemove', (e) => {
+            const rect = container.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+            
+            gsap.to([text, textV2], {duration: 0.3, x: x * 20, y: y * 20, rotation: x * 5});
+            gsap.to(underline, {duration: 0.3, x: x * 20, rotation: x * 5});
+        });
+
+        // Enter Site button click
+        enterSiteBtn.addEventListener('click', () => {
+            // Navigate to the main website
+            window.location.href = '../index.html'; // Adjust the path as needed
+        });
+    </script>
+</body>
+</html>

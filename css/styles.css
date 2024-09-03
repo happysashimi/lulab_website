@@ -1,0 +1,130 @@
+:root {
+    --primary-color: #ff6b6b;
+    --secondary-color: #4ecdc4;
+    --accent-color: #ffd93d;
+    --background-color: #f7fff7;
+    --text-color: #2c3e50;
+    --card-background: #ffffff;
+    --header-text-color: #ffffff;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: var(--text-color);
+    overflow-x: hidden;
+    position: relative;
+    background-color: var(--background-color);
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../Images/BGImage.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.5;
+    z-index: -1;
+    pointer-events: none;
+}
+
+header {
+    background-color: var(--primary-color);
+    color: var(--header-text-color);
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 4rem;
+    z-index: 1;
+    position: relative;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, var(--secondary-color) 10%, transparent 10%),
+                radial-gradient(circle, var(--secondary-color) 10%, transparent 10%);
+    background-size: 50px 50px;
+    background-position: 0 0, 25px 25px;
+    opacity: 0.3;
+    animation: move 20s linear infinite;
+}
+
+@keyframes move {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.container {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+}
+
+.founder-info {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    text-align: center;
+}
+
+.founder-info img.founder-photo {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+footer {
+    background-color: var(--primary-color);
+    color: var(--header-text-color);
+    text-align: center;
+    padding: 1rem;
+    margin-top: 50px;
+}
+
+.past-projects, .signup-section, .course-offerings {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.project-card, .course-card {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    z-index: 2;
+    border: 3px dashed var(--accent-color);
+}
+
+.project-card:hover, .course-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lulab with Scrolling Background</title>
+    <link rel="stylesheet" href="css/styles.css"> <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="css/introAnimation.css"> <!-- Link to the intro animation CSS -->
+</head>
+<body>
+    <!-- Scrolling background section -->
+    <div class="parallax-bg"></div>
+
+    <!-- Content section with header -->
+    <header>
+        <h1>Lulab</h1>
+    </header>
+
+    <div class="content-section">
+        <div class="container">
+            <div class="founder-info">
+                <div class="founder-bio">
+                    <h2>Meet Our Founder</h2>
+                    <img src="Images/LXQPFP.png" alt="Lu Xiangqian" class="founder-photo">
+                    <p><strong>Lu Xiangqian: Distinguished Professor, Tsinghua University</strong></p>
+                    <p>Lu Xiangqian is a distinguished professor at Tsinghua University with a background in economics, management, and entrepreneurship. He has a doctoral degree from UC Berkeley and significant experience in investment and accelerator projects in both the U.S. and China. He contributed to award-winning entrepreneurship courses at Tsinghua University.</p>
+                </div>
+            </div>
+
+            <div class="signup-section">
+                <h2>Think you have what it takes?</h2>
+                <p>Success is Not guarenteed</p>
+            </div>
+
+            <div class="past-projects">
+                <h2>Cool AI & Coding Projects by Lulab Students</h2>
+                <div class="project-card" onclick="openDialog('AI-Powered Game', 'A game enhanced by AI, where players can interact with intelligent characters that learn and adapt.', '🏆 Best AI Integration Award', 'Videos/frogThing.mp4')">
+                    <h3>青蛙外教</h3>
+                    <p>An English AI teacher that won in 火山引擎's competition.</p>
+                    <div class="award">🏆 Best AI Made Award</div>
+                </div>
+                <div class="project-card" onclick="openDialog('Weather Prediction AI', 'An AI model trained to predict local weather patterns using historical data and advanced coding techniques.', '🏅 Most Innovative Project', 'Videos/weatherPrediction.mp4')">
+                    <h3>Weather Prediction AI</h3>
+                    <p>An AI model trained to predict local weather patterns using historical data and advanced coding techniques.</p>
+                    <div class="award">🏅 Most Innovative Project</div>
+                </div>
+                <div class="project-card" onclick="openDialog('Robotic Plant Watering System', 'A Lua-controlled robot that monitors soil moisture and waters plants automatically using AI algorithms.', '🌱 Eco-Friendly Innovation Award', 'Videos/plantWateringSystem.mp4')">
+                    <h3>Robotic Plant Watering System</h3>
+                    <p>A Lua-controlled robot that monitors soil moisture and waters plants automatically using AI algorithms.</p>
+                    <div class="award">🌱 Eco-Friendly Innovation Award</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Another scrolling background -->
+    <div class="parallax-bg"></div>
+
+    <!-- Content section for courses -->
+    <div class="content-section">
+        <div class="container">
+            <div class="course-offerings">
+                <h2>Join Our AI & Coding Adventures!</h2>
+                <div class="course-card">
+                    <h3>🚀 Month Class: AI Coding Launchpad</h3>
+                    <p>Blast off into the world of AI and coding with our intensive one-month program!</p>
+                    <ul>
+                        <li>Perfect for beginners and intermediate coders</li>
+                        <li>Create your first AI-powered project in just 4 weeks</li>
+                        <li>Live online classes with fun coding challenges</li>
+                    </ul>
+                    <div class="price-tag">Only 6,880 Chinese Yuan!</div>
+                </div>
+                <div class="course-card">
+                    <h3>🌟 Year Class: AI Coding Legend Program</h3>
+                    <p>Embark on an epic year-long journey to become a true AI and coding legend!</p>
+                    <ul>
+                        <li>In-depth exploration of advanced AI and coding concepts</li>
+                        <li>Build complex AI-driven projects and games</li>
+                        <li>One-on-one mentoring with industry experts</li>
+                    </ul>
+                    <div class="interview-badge">Interview Required</div>
+                    <p><small>*Price discussed after successful interview</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2024 Lulab - Where AI & Coding Learning is an Adventure!</p>
+        <p>Contact us: info@lulab.com | (123) 456-7890</p>
+    </footer>
+
+    <!-- Overlay -->
+    <div id="overlay" class="overlay"></div>
+
+    <!-- Dialog for displaying project details -->
+    <div id="dialog" class="dialog-container">
+        <h2 id="dialog-title"></h2>
+        <p id="modal-description"></p>
+        <div class="award" id="dialog-award"></div>
+        <video id="dialog-video" class="dialog-video" controls></video>
+        <button class="close-btn" onclick="closeDialog()">Close</button>
+    </div>
+
+    <!-- JavaScript for main website functionality -->
+    <script src="js/scripts.js"></script>
+
+    <!-- JavaScript for intro animation -->
+    <script src="js/introAnimation.js"></script>
+</body>
+</html>
